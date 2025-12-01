@@ -22,7 +22,7 @@ data "aws_ami" "joindevops" {
     name   = "root-device-type"
     values = ["ebs"]
   }
-
+  
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
