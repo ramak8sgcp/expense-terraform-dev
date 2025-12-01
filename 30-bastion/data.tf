@@ -5,7 +5,7 @@ data "aws_ssm_parameter" "bastion_sg_id" {
 
 data "aws_ssm_parameter" "public_subnet_ids" {
   #/expense/dev/public_subnet_ids
-  name = "/${var.project_name}/${var.environment}/public_subnet_sg_ids"
+  name = "/${var.project_name}/${var.environment}/public_subnet_ids"
 }
 
 data "aws_ami" "joindevops" {
