@@ -38,6 +38,10 @@ variable "ansible_tags" {
   }
 }
 
-variable "zone_name" {
+variable "domain_name" {
   default = "ramana3490.online"
+}
+
+variable "hosted_zone_id" {
+  default = "Z00280343M1NSFAEBLQAW"
 }

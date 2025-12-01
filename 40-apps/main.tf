@@ -76,47 +76,37 @@ module "ansible" {
   )
 }
 
+resource "aws_route53_record" "frontend" {
+  zone_id = var.hosted_zone_id
+  name    = "frontend.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [module.frontend.public_ip]
+}
 
-# module "records" {
-#   source  = "terraform-aws-modules/route53/aws//modules/records"
+resource "aws_route53_record" "ansible" {
+  zone_id = var.hosted_zone_id
+  name    = "ansible.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [module.ansible.public_ip]
+}
 
-#   zone_name = var.zone_name
+resource "aws_route53_record" "backend" {
+  zone_id = var.hosted_zone_id
+  name    = "backend.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [module.backend.private_ip]
+}
 
-#   records = [
-#     {
-#       name    = "mysql"
-#       type    = "A"
-#       ttl     = 1
-#       records = [
-#         module.mysql.private_ip
-#       ]
-#     },
-#     {
-#       name    = "backend"
-#       type    = "A"
-#       ttl     = 1
-#       records = [
-#         module.backend.private_ip
-#       ]
-#     },
-#     {
-#       name    = "frontend"
-#       type    = "A"
-#       ttl     = 1
-#       records = [
-#         module.frontend.private_ip
-#       ]
-#     },
-#     {
-#       name    = ""
-#       type    = "A"
-#       ttl     = 1
-#       records = [
-#         module.frontend.public_ip
-#       ]
-#     }
-#   ]
-# }
+resource "aws_route53_record" "mysql" {
+  zone_id = var.hosted_zone_id
+  name    = "mysql.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [module.mysql.private_ip]
+}
 
 
 # module "mysql" {
